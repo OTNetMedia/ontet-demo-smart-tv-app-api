@@ -1,0 +1,8 @@
+const mongoose = require('mongoose');
+
+const OrganizationSchema = new mongoose.Schema({
+    name: { type: String, required: true, unique: true },
+    location: { type: String, required: false },
+});
+
+module.exports = mongoose.model('Organization', OrganizationSchema);
