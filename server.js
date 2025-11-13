@@ -20,9 +20,10 @@ fs.readdirSync('./api/routes').forEach((file) => {
     app.use(`/api/${routeName}`, route);
 });
 
-const DEFAULT_PORT = 5001;
-const server = app.listen(DEFAULT_PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${DEFAULT_PORT}`);
+const port = process.env.PORT || 5000;
+
+const server = app.listen(port, '0.0.0.0', () => {
+    console.log(`🚀 Server running on port ${port}`);
 });
 
 server.on('error', (err) => {
