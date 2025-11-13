@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Organization = require('./api/models/Organization');
 const Team = require('./api/models/Team');
@@ -7,7 +8,7 @@ const Genre = require('./api/models/Genre');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/basketball-db');
+        await mongoose.connect(process.env.MONGO_URI);
         console.log('✅ Connected to MongoDB');
     } catch (error) {
         console.error('❌ MongoDB connection error:', error);
@@ -143,8 +144,8 @@ const populateDatabase = async () => {
             original_title: `${homeTeam.name} vs ${awayTeam.name}`,
             overview: `Game between ${homeTeam.name} and ${awayTeam.name}`,
             popularity: (Math.random() * 100).toFixed(1),
-            poster_path: `/${homeTeam.name.toLowerCase()}-${awayTeam.name.toLowerCase()}.jpg`,
-            backdrop_path: `/${homeTeam.name.toLowerCase()}-${awayTeam.name.toLowerCase()}-bg.jpg`,
+            poster_path: `https://picsum.photos/seed/${homeTeam.name}-${awayTeam.name}/120/190`,
+            backdrop_path: `https://picsum.photos/seed/${homeTeam.name}-${awayTeam.name}-bg/1280/720`,
             vote_average: (Math.random() * 5 + 5).toFixed(1), // Between 5 and 10
             vote_count: Math.floor(Math.random() * 5000 + 500),
             home_team: homeTeam._id,
