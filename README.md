@@ -1,4 +1,6 @@
-## How to run
+# OTNet Smart TV Demo API
+
+### How to run
 
 -   Install mongodb & run it
 
@@ -8,25 +10,25 @@ brew install mongodb-community@6.0
 brew services start mongodb-community@6.0
 ```
 
-## Now you can run.
+### Now you can run.
 
 ```
 node server.js
 ```
 
-## Test its working at
+### Test its working at
 
 ```
 http://localhost:5001/api/game/
 ```
 
-## Populate some test data.
+### Populate some test data.
 
 ```
 node populate.js
 ```
 
-## Add a .env file fro aws uploads
+### Add a .env file fro aws uploads
 
 ```
 AWS_ACCESS_KEY_ID=
