@@ -100,6 +100,27 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/genre/:genreId', async (req, res) => {
+    try {
+        const genreId = req.params.genreId;
+
+        const results = await Game.find({ genres: genreId }).populate([
+            'home_team',
+            'away_team',
+            'genres',
+            'personnel',
+        ]);
+
+        res.json({
+            count: results.length,
+            results,
+        });
+    } catch (error) {
+        console.error('[Game Genre Filter Error]', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 router.patch(
     '/:id',
     upload.fields([{ name: 'poster' }, { name: 'backdrop' }]),
